@@ -2,18 +2,14 @@ from fastapi import FastAPI, HTTPException, status
 from transformers import pipeline
 from keycloak import KeycloakOpenID
 from pydantic import BaseModel
-import uvicorn
 
 app = FastAPI()
 
 
 #load the model, here I'm using HuggingFace model but it could be pkl file or whatever trained model you want.
-# this model doeas a sentiment anylisy on the label you chose using zero-shot tecniques
+# this model doeas text classification on arbitrary set of labels using zero-shot classification tecniques
 model = pipeline(model="facebook/bart-large-mnli") 
-# classifier(
-#     "I have a problem with my iphone that needs to be resolved asap!!",
-#     candidate_labels=["urgent", "not urgent", "phone", "tablet", "computer"],
-# )
+
 
 class Input(BaseModel):
     token: str
@@ -58,5 +54,3 @@ def secure(token):
         print("authorized token")
         return True
 
-if __name__ == '__main__':
-    uvicorn.run(app, host="127.0.0.1", port="8000", log_level="info")

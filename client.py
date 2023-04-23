@@ -37,7 +37,6 @@ headers = {'Content-type': 'application/json'}
 text = "I have a problem with my iphone that needs to be resolved asap!!"
 labels = ["urgent", "not urgent", "phone", "tablet", "computer"]
 
-#TODO: call the protected_model with and without the access token
 
 def authorized_request():
     # Make a POST request the prediction
